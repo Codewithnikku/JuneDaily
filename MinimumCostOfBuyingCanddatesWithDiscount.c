@@ -26,3 +26,4 @@ int main(){
     printf("%d\n", minimumCost(cost, costSize));
     return 0;
 }
+
