@@ -1,8 +1,8 @@
-# Total Waviness of Numbers in Range I
+# 3751. Total Waviness of Numbers in Range I
 
 ## Intuition
 
-When I first read this problem, the key insight is — **we don't need any fancy math or DP**. 
+When I first read this problem, the key insight is — **we don't need any fancy math or DP**.
 
 The constraint `num2 ≤ 10⁵` is the biggest hint. That's only 100,000 numbers, and each has at most **6 digits**. So the absolute worst case is `100,000 × 6 = 600,000` operations — that's nothing for a computer.
 
@@ -17,7 +17,7 @@ Think of digits in a number like a **mountain range**:
 ```
 Number: 1 8 3 9 2
 Index:  0 1 2 3 4
-            ↑   ↑
+            ^   ^
            peak peak  (8 > 1,3) and (9 > 3,2)
 ```
 
@@ -42,7 +42,7 @@ Index:  0 1 2 3 4
 
 **Step 5:** If either is true, increment total.
 
-> 💡 **Why string conversion?** Comparing characters `'0'-'9'` works perfectly since their ASCII values preserve numeric order. No need to extract digits with `% 10`.
+> **Why string conversion?** Comparing characters `'0'-'9'` works perfectly since their ASCII values preserve numeric order. No need to extract digits with `% 10`.
 
 ---
 
@@ -52,13 +52,13 @@ Index:  0 1 2 3 4
 
 | Number | Digits | Interior Check | Waviness |
 |--------|--------|----------------|----------|
-| 198 | 1, **9**, 8 | 9 > 1 and 9 > 8 → Peak ✅ | 1 |
-| 199 | 1, **9**, 9 | 9 > 1 but 9 = 9 → Neither ❌ | 0 |
-| 200 | 2, **0**, 0 | 0 < 2 but 0 = 0 → Neither ❌ | 0 |
-| 201 | 2, **0**, 1 | 0 < 2 and 0 < 1 → Valley ✅ | 1 |
-| 202 | 2, **0**, 2 | 0 < 2 and 0 < 2 → Valley ✅ | 1 |
+| 198 | 1, **9**, 8 | 9 > 1 and 9 > 8 → Peak | 1 |
+| 199 | 1, **9**, 9 | 9 > 1 but 9 = 9 → Neither | 0 |
+| 200 | 2, **0**, 0 | 0 < 2 but 0 = 0 → Neither | 0 |
+| 201 | 2, **0**, 1 | 0 < 2 and 0 < 1 → Valley | 1 |
+| 202 | 2, **0**, 2 | 0 < 2 and 0 < 2 → Valley | 1 |
 
-**Total = 3 ✅**
+**Total = 3**
 
 ---
 
@@ -70,14 +70,6 @@ Index:  0 1 2 3 4
 | **Space** | $$O(d)$$ | Only storing the digit string of current number, `d ≤ 6` |
 
 Since `d` is a constant (max 6), this is effectively **O(n)** time and **O(1)** space.
-
----
-
-## Common Mistakes to Avoid
-
-- ❌ **Checking first/last digits** → Problem explicitly says they can never be peaks/valleys
-- ❌ **Using `>=` instead of `>`** → The condition is **strictly** greater/less than
-- ❌ **Off-by-one in loop bounds** → Loop from `i = 1` to `i < len - 1`, not `i < len`
 
 ---
 
