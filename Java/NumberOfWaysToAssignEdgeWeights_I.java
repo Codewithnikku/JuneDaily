@@ -1,4 +1,6 @@
-class Solution {
+import java.util.*;
+
+class NWAEW_I {
     private static final long MOD = 1_000_000_007L;
 
     public int assignEdgeWeights(int[][] edges) {
